@@ -13,6 +13,7 @@ using Verse;
 
 namespace KompressionMod
 {
+  [StaticConstructorOnStartup]
   internal class PackingBenchTierOne : Building_WorkTable
   {
     private bool Change = false;
@@ -36,27 +37,32 @@ namespace KompressionMod
       }
     }
 
-    public override void SpawnSetup()
-    {
-      base.SpawnSetup();
-      this.powerComp = this.GetComp<CompPowerTrader>();
-      PackingBenchTierOne.Ui_Pmode1 = ContentFinder<Texture2D>.Get("Things/Building/Ui/Ui_Pack", true);
-      PackingBenchTierOne.Ui_Pmode2 = ContentFinder<Texture2D>.Get("Things/Building/Ui/Ui_unPack", true);
-      PackingBenchTierOne.TexOpen = GraphicDatabase.Get<Graphic_Single>("Things/Building/Frames/PackingBenchTier1_Open");
-      PackingBenchTierOne.TexClosed = GraphicDatabase.Get<Graphic_Single>("Things/Building/Frames/PackingBenchTier1_Closed");
-      PackingBenchTierOne.TexResFrames = (Graphic[]) new Graphic_Single[12];
-      for (int index = 0; index < 12; ++index)
-      {
-        PackingBenchTierOne.TexResFrames[index] = GraphicDatabase.Get<Graphic_Single>("Things/Building/Frames/PackingBenchTier1_Frame" + (object) (index + 1));
-        PackingBenchTierOne.TexResFrames[index].drawSize = this.Graphic.drawSize;
-        PackingBenchTierOne.TexResFrames[index].color = this.Graphic.color;
-        PackingBenchTierOne.TexResFrames[index].colorTwo = this.Graphic.colorTwo;
-        PackingBenchTierOne.TexResFrames[index].MatSingle.color = this.Graphic.MatSingle.color;
-      }
-      this.factionthing = this.factionInt;
-    }
+        public override void SpawnSetup()
+        {
+            base.SpawnSetup();
+            this.powerComp = this.GetComp<CompPowerTrader>();
+            LongEventHandler.ExecuteWhenFinished(SS2);
+            this.factionthing = this.factionInt;
+        }
 
-    public override void ExposeData()
+        public void SS2()
+        {
+            PackingBenchTierOne.Ui_Pmode1 = ContentFinder<Texture2D>.Get("Things/Building/Ui/Ui_Pack", true);
+            PackingBenchTierOne.Ui_Pmode2 = ContentFinder<Texture2D>.Get("Things/Building/Ui/Ui_unPack", true);
+            PackingBenchTierOne.TexOpen = GraphicDatabase.Get<Graphic_Single>("Things/Building/Frames/PackingBenchTier1_Open");
+            PackingBenchTierOne.TexClosed = GraphicDatabase.Get<Graphic_Single>("Things/Building/Frames/PackingBenchTier1_Closed");
+            PackingBenchTierOne.TexResFrames = (Graphic[])new Graphic_Single[12];
+            for (int index = 0; index < 12; ++index)
+            {
+                PackingBenchTierOne.TexResFrames[index] = GraphicDatabase.Get<Graphic_Single>("Things/Building/Frames/PackingBenchTier1_Frame" + (object)(index + 1));
+                PackingBenchTierOne.TexResFrames[index].drawSize = this.Graphic.drawSize;
+                PackingBenchTierOne.TexResFrames[index].color = this.Graphic.color;
+                PackingBenchTierOne.TexResFrames[index].colorTwo = this.Graphic.colorTwo;
+                PackingBenchTierOne.TexResFrames[index].MatSingle.color = this.Graphic.MatSingle.color;
+            }
+        }
+
+        public override void ExposeData()
     {
       base.ExposeData();
       Scribe_Values.LookValue<bool>(ref this.Change, "ChangeActivator", false, false);

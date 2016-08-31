@@ -13,6 +13,7 @@ using Verse;
 
 namespace KompressionMod
 {
+  [StaticConstructorOnStartup]
   internal class FoodBench : Building_WorkTable
   {
     private bool Change = false;
@@ -36,27 +37,32 @@ namespace KompressionMod
       }
     }
 
-    public override void SpawnSetup()
-    {
-      base.SpawnSetup();
-      this.powerComp = this.GetComp<CompPowerTrader>();
-      FoodBench.Ui_Pmode1 = ContentFinder<Texture2D>.Get("Things/Building/Ui/Ui_Pack", true);
-      FoodBench.Ui_Pmode2 = ContentFinder<Texture2D>.Get("Things/Building/Ui/Ui_unPack", true);
-      FoodBench.TexOpen = GraphicDatabase.Get<Graphic_Single>("Things/Building/Frames/FoodBench_Packing");
-      FoodBench.TexClosed = GraphicDatabase.Get<Graphic_Single>("Things/Building/Frames/FoodBench_UnPacking");
-      FoodBench.TexResFrames = (Graphic[]) new Graphic_Single[12];
-      for (int index = 0; index < 12; ++index)
-      {
-        FoodBench.TexResFrames[index] = GraphicDatabase.Get<Graphic_Single>("Things/Building/Frames/FoodBench_Frame" + (object) (index + 1));
-        FoodBench.TexResFrames[index].drawSize = this.Graphic.drawSize;
-        FoodBench.TexResFrames[index].color = this.Graphic.color;
-        FoodBench.TexResFrames[index].colorTwo = this.Graphic.colorTwo;
-        FoodBench.TexResFrames[index].MatSingle.color = this.Graphic.MatSingle.color;
-      }
-      this.factionthing = this.factionInt;
-    }
+        public override void SpawnSetup()
+        {
+            base.SpawnSetup();
+            this.powerComp = this.GetComp<CompPowerTrader>();
+            LongEventHandler.ExecuteWhenFinished(SS2);
+            this.factionthing = this.factionInt;
+        }
 
-    public override void ExposeData()
+        public void SS2()
+        {
+            FoodBench.Ui_Pmode1 = ContentFinder<Texture2D>.Get("Things/Building/Ui/Ui_Pack", true);
+            FoodBench.Ui_Pmode2 = ContentFinder<Texture2D>.Get("Things/Building/Ui/Ui_unPack", true);
+            FoodBench.TexOpen = GraphicDatabase.Get<Graphic_Single>("Things/Building/Frames/FoodBench_Packing");
+            FoodBench.TexClosed = GraphicDatabase.Get<Graphic_Single>("Things/Building/Frames/FoodBench_UnPacking");
+            FoodBench.TexResFrames = (Graphic[])new Graphic_Single[12];
+            for (int index = 0; index < 12; ++index)
+            {
+                FoodBench.TexResFrames[index] = GraphicDatabase.Get<Graphic_Single>("Things/Building/Frames/FoodBench_Frame" + (object)(index + 1));
+                FoodBench.TexResFrames[index].drawSize = this.Graphic.drawSize;
+                FoodBench.TexResFrames[index].color = this.Graphic.color;
+                FoodBench.TexResFrames[index].colorTwo = this.Graphic.colorTwo;
+                FoodBench.TexResFrames[index].MatSingle.color = this.Graphic.MatSingle.color;
+            }
+        }
+
+        public override void ExposeData()
     {
       base.ExposeData();
       Scribe_Values.LookValue<bool>(ref this.Change, "ChangeActivator", false, false);

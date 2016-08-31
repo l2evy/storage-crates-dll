@@ -13,6 +13,7 @@ using Verse;
 
 namespace KompressionMod
 {
+  [StaticConstructorOnStartup]
   internal class Crate : ThingWithComps
   {
     private int StoredAmount = 0;
