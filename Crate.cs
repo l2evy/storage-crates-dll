@@ -18,8 +18,12 @@ namespace KompressionMod
     {
       base.SpawnSetup();
       this.ReadFormXML();
-      Crate.UnLockIco = ContentFinder<Texture2D>.Get("Things/Building/Ui/Ui_unPack", true);
+      LongEventHandler.ExecuteWhenFinished(SS2);
     }
+        public void SS2()
+        {
+          Crate.UnLockIco = ContentFinder<Texture2D>.Get("Things/Building/Ui/Ui_unPack", true);
+        }
 
     private void ReadFormXML()
     {
@@ -30,7 +34,7 @@ namespace KompressionMod
       this.StoredAmount = def.StoredStuffAmmount;
     }
 
-    public override IEnumerable<Gizmo> GetGizmos()
+   /* public override IEnumerable<Gizmo> GetGizmos()
     {
       IList<Gizmo> source = (IList<Gizmo>) new List<Gizmo>();
       if (!string.IsNullOrEmpty(this.StoredThingName) && this.StoredAmount > 0)
@@ -57,5 +61,6 @@ namespace KompressionMod
       GenSpawn.Spawn(newThing, this.Position);
       this.Destroy(DestroyMode.Vanish);
     }
+  */
   }
 }
