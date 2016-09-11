@@ -23,7 +23,7 @@ namespace KompressionMod
     private Graphic OutputGraphic;
     private Faction factionthing;
 
-    public override Graphic Graphic
+        public override Graphic Graphic
     {
       get
       {
