@@ -14,9 +14,9 @@ namespace KompressionMod
     private string StoredThingName;
     private static Texture2D UnLockIco;
 
-    public override void SpawnSetup()
+    public override void SpawnSetup(Map map)
     {
-      base.SpawnSetup();
+      base.SpawnSetup(map);
       this.ReadFormXML();
       LongEventHandler.ExecuteWhenFinished(SS2);
     }

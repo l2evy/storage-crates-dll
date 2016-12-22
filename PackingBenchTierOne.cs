@@ -31,9 +31,9 @@ namespace KompressionMod
       }
     }
 
-        public override void SpawnSetup()
+        public override void SpawnSetup(Map map)
         {
-            base.SpawnSetup();
+            base.SpawnSetup(map);
             this.powerComp = this.GetComp<CompPowerTrader>();
             LongEventHandler.ExecuteWhenFinished(SS2);
             this.factionthing = this.factionInt;
@@ -105,7 +105,7 @@ namespace KompressionMod
       else
         this.handleAnimation(true);
       ++this.timer;
-      Find.MapDrawer.MapMeshDirty(this.Position, MapMeshFlag.Things, false, false);
+      this.Map.mapDrawer.MapMeshDirty(this.Position, MapMeshFlag.Things, false, false);
       if (this.timer >= 60)
       {
         Thing newThing;
@@ -122,8 +122,7 @@ namespace KompressionMod
         newThing.HitPoints = this.HitPoints;
         ((PackingBenchTierOne) newThing).stateOpen = !this.stateOpen;
         newThing.SetFactionDirect(this.Faction);
-        this.Destroy(DestroyMode.Vanish);
-        GenSpawn.Spawn(newThing, this.Position, this.Rotation);
+        GenSpawn.Spawn(newThing, this.Position, this.Map, this.Rotation);
         this.timer = 0;
         this.Change = false;
       }
