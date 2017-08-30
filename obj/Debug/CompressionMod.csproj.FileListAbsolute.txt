@@ -12,3 +12,10 @@ C:\Users\Ryo\Documents\Visual Studio 2015\Projects\Storate Crates - Working\Comp
 C:\Users\Ryo\Documents\Visual Studio 2015\Projects\Storate Crates - Working\CompressionMod\obj\Debug\CompressionMod.csprojResolveAssemblyReference.cache
 C:\Users\Ryo\Documents\Visual Studio 2015\Projects\Storate Crates - Working\CompressionMod\obj\Debug\CompressionMod.dll
 C:\Users\Ryo\Documents\Visual Studio 2015\Projects\Storate Crates - Working\CompressionMod\obj\Debug\CompressionMod.pdb
+C:\Users\Ryo\Documents\GitHub\storage-crates-dll\bin\Debug\CompressionMod.dll
+C:\Users\Ryo\Documents\GitHub\storage-crates-dll\bin\Debug\CompressionMod.pdb
+C:\Users\Ryo\Documents\GitHub\storage-crates-dll\bin\Debug\Assembly-CSharp.dll
+C:\Users\Ryo\Documents\GitHub\storage-crates-dll\bin\Debug\UnityEngine.dll
+C:\Users\Ryo\Documents\GitHub\storage-crates-dll\obj\Debug\CompressionMod.csproj.CoreCompileInputs.cache
+C:\Users\Ryo\Documents\GitHub\storage-crates-dll\obj\Debug\CompressionMod.dll
+C:\Users\Ryo\Documents\GitHub\storage-crates-dll\obj\Debug\CompressionMod.pdb

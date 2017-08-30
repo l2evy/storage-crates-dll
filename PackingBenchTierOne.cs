@@ -31,9 +31,9 @@ namespace KompressionMod
       }
     }
 
-        public override void SpawnSetup(Map map)
+        public override void SpawnSetup(Map map,bool respawningAfterLoad)
         {
-            base.SpawnSetup(map);
+            base.SpawnSetup(map, respawningAfterLoad);
             this.powerComp = this.GetComp<CompPowerTrader>();
             LongEventHandler.ExecuteWhenFinished(SS2);
             this.factionthing = this.factionInt;
@@ -59,9 +59,9 @@ namespace KompressionMod
         public override void ExposeData()
     {
       base.ExposeData();
-      Scribe_Values.LookValue<bool>(ref this.Change, "ChangeActivator", false, false);
-      Scribe_Values.LookValue<int>(ref this.timer, "Timer", 0, false);
-      Scribe_Values.LookValue<bool>(ref this.stateOpen, "BenchState", false, false);
+      Scribe_Values.Look<bool>(ref this.Change, "ChangeActivator", false, false);
+      Scribe_Values.Look<int>(ref this.timer, "Timer", 0, false);
+      Scribe_Values.Look<bool>(ref this.stateOpen, "BenchState", false, false);
     }
 
     public override IEnumerable<Gizmo> GetGizmos()
